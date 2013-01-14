@@ -8,6 +8,7 @@ email verification message.
 
 ![Screenshot](https://developer.mozilla.org/@api/deki/files/6051/=browserid-enter-email.png)
 
+#[DEMO](http://htmlpreview.github.com/?https://github.com/altryne/browserID-jQuery/blob/master/Demos/index.html)
 How to Use
 ----------
 
