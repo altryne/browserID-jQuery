@@ -2,7 +2,7 @@
 
     require_once('login.class.php');
 
-    $browserID = new BrowserID($_SERVER['HTTP_HOST'], $_POST['assertion']);
+    $browserID = new BrowserID($_SERVER['HTTP_HOST'], $_REQUEST['assertion']);
 
     if($browserID->verify_assertion()) {
  

@@ -1,7 +1,7 @@
 BrowserID
 =========
 
-This is a MooTools client library for the BrowserID Protocol. BrowserID is a new way for users to log into web sites using their email address. 
+This is a jQuery client library for the BrowserID Protocol. BrowserID is a new way for users to log into web sites using their email address.
 It aims to provide a secure way of proving your identity to servers across the internet, without having to create separate usernames and passwords each time. 
 Instead of a new username, it uses your email address as you identity which allows it to be descentralized since anyone can send you an
 email verification message.
@@ -11,65 +11,37 @@ email verification message.
 How to Use
 ----------
 
-Include the BrowserID include.js library in your site by adding the following script tag to your pages:
+###Include the BrowserID include.js library in your site by adding the following script tags to your pages:
+```
+<script>navigator.id || document.write('<script src="//browserid.org/include.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="jquery.browserid.js"></script>
+```
 
-        <script src="https://browserid.org/include.js" type="text/javascript"></script>
-        <script type="text/javascript" src="mootools.js"></script>
-        <script type="text/javascript" src="browserID.js.js"></script>
+###Adding a login button:
 
-Adding a pretty button:
+```
+<button id="login">LOGIN</button>
+```
 
-        #HTML
-        <button id="login"><img src="https://browserid.org/i/sign_in_green.png" alt="sign in with browser ID"></button>
+###on DOM ready initiate
+```
+$('<your button element>').browserid([options]);
+```
 
-When DOM is ready:
+### Arguments:
 
-        #JS
-        window.addEvent('domready', function(){
+- options   `object` - The options for the BrowserID instance.
 
-                $('login').addEvent('click',function(){
-                   navigator.id.getVerifiedEmail(function(assertion){
-                            if(assertion) {
-                              //got an assertion, now send it up to the server for verification
-                               verify(assertion)
-                            } else {
-                               alert("I still don't know you")
-                            }
-                   })
-               })
-        })
-
-
-         function verify(assertion) {
-
-             var browserid = new BrowserID(assertion, {
-
-                             onComplete: function(response){
-
-                                 //if the server successfully verifies the assertion we
-                                 //updating the UI by calling 'loggedIn()'
-                                 if(response.status == 'okay') {
-
-                                       loggedIn(response.email)
-
-                                 //otherwise we handle the login failure by calling 'failure()'
-                                 } else {
-                                       failure(response)
-                                 }    
-                             }
-             })
-         }
-
-         function loggedIn(email) {
-             //do stuff with email
-             var p = new Element('p').set('text','Logged In as: ' + email)
-             $('login').parentNode.replaceChild(p,$('login'))
-         }
-
-         function failure(f) {
-             //do stuff with failure
-             alert('Failure reason: ' + f.reason) 
-         }
+####Example options :
+```
+   var options = {
+    onlogin : function(response){ ... },
+    onfail : function(response){ ... },
+    onlogout : function(response){ ... },
+    server : 'login.php' /* this is the verifier server url - attached in login.php */
+}
+```
 
 References:
 
@@ -79,3 +51,4 @@ References:
 - http://identity.mozilla.com/post/7616727542/introducing-browserid-a-better-way-to-sign-in
 - http://identity.mozilla.com/post/17207734786/id-provider-support-now-live-on-browserid
 - https://github.com/mozilla/browserid/wiki
+- https://github.com/thinkphp/browserID-MooTools

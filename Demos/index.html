@@ -1,72 +1,43 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-   <title>Plugin BrowserID MooTools</title>
-   <style type="text/css">
-    h1,h2,h3,body { font-family:'gill sans','dejavu sans',verdana,sans-serif; }
-    h1 { font-family:menlo,'dejavu sans mono',monospace; }
-    h1 {
-      font-weight:bold;
-      font-size:43px;
-      letter-spacing: -1px;
-      color:#000;
-      margin-bottom:0;
-      position:relative;
-    }
-   button{border:none;background:transparent;margin:0 2em;}
-   </style>
-   <script src="http://www.google.com/jsapi?key=ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q"></script>
-   <script type="text/javascript">google.load("mootools", "1.4");</script>
-   <script src="https://browserid.org/include.js"></script>
-   <script src="browserID-yui-compressed.js"></script>
-   <script type="text/javascript">
+	<title>Demo for jquery-browserID plugin</title>
 
-   window.addEvent('domready', function(){
-        $('login').addEvent('click',function(){
-            navigator.id.getVerifiedEmail(function(assertion){
-                       if(assertion) {
-                            //got an assertion, now send it up to the server for verification
-                            verify(assertion);
-                      } else {
-                           alert("I still don't know you");
-                      }
-            });
-        });
-   });
+	<style type="text/css">
+		.browserid-login{
+			border: 0;
+			width: 185px;
+			height: 25px;
+			cursor: pointer;
+			background: url(https://developer.mozilla.org/files/3963/persona_sign_in_blue.png);
+			text-indent: -9999px;
+		}
+		.browserid-logout{
 
-   function verify(assertion) {
-
-             var browserid = new BrowserID(assertion, {
-                             onComplete: function(response){
-                                 //if the server successfully verifies the assertion we
-                                 //updating the UI by calling 'loggedIn()'
-                                 if(response.status == 'okay') {
-                                       loggedIn(response.email)
-                                 //otherwise we handle the login failure
-                                 } else {
-                                       failure(response)
-                                 }    
-                             }
-             })
-   }
-
-   function loggedIn(email) {
-        //do stuff with email
-        var p = new Element('p').set('text','Logged In as: ' + email)
-        $('login').parentNode.replaceChild(p,$('login'))
-   }
-
-   function failure(f) {
-        //do stuff with failure
-        alert('Failure reason: ' + f.reason) 
-   }
-
-   </script>
+		}
+	</style>
 </head>
 <body>
-<h1>Plugin BrowserID MooTools</h1>
-<button id="login"><img src="https://browserid.org/i/sign_in_green.png" alt="sign in with browser ID"></button>
+
+<h1>Demo for jquery-browserID plugin</h1>
+<button id="login"></button>
+
+<!--put the scripts in the bottom like a good front ender would-->
+
+<!-- Check for support for browserid in the browser, fallback to loading the polyfill  -->
+<script>navigator.id || document.write('<script src="//browserid.org/include.js"><\/script>')</script>
+<!-- Load jquery from google's CDN + fallback - stolen from h5bp.com-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+<!--Load our browserid.jquery.js file-->
+<script src="jquery.browserid.js"></script>
+
+<script>
+	$('#login').browserID({
+		onlogin : function(something){
+			console.log(something);
+		}
+	});
+</script>
 </body>
 </html>
-
