@@ -14,7 +14,7 @@ How to Use
 
 ###Include the BrowserID include.js library in your site by adding the following script tags to your pages:
 ```
-<script>navigator.id || document.write('<script src="//browserid.org/include.js"><\/script>')</script>
+<script>navigator.id || document.write('<script src="https://browserid.org/include.js"><\/script>')</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="jquery.browserid.js"></script>
 ```
