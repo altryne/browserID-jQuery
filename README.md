@@ -14,7 +14,7 @@ How to Use
 
 ###Include the BrowserID include.js library in your site by adding the following script tags to your pages:
 ```
-<script>navigator.id || document.write('<script src="//browserid.org/include.js"><\/script>')</script>
+<script>navigator.id || document.write('<script src="https://login.persona.org/include.js"><\/script>')</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="jquery.browserid.js"></script>
 ```
@@ -46,9 +46,8 @@ $('<your button element>').browserid([options]);
 
 References:
 
-- https://browserid.org/
-- https://developer.mozilla.org/en/BrowserID
-- https://browserid.org/developers
+- https://login.persona.org/
+- https://developer.mozilla.org/docs/persona
 - http://identity.mozilla.com/post/7616727542/introducing-browserid-a-better-way-to-sign-in
 - http://identity.mozilla.com/post/17207734786/id-provider-support-now-live-on-browserid
 - https://github.com/mozilla/browserid/wiki
