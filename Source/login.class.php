@@ -8,7 +8,7 @@
           /**
            *  The browserID's assertion verification service endpoint 
            */
-          const endpoint = 'https://browserid.org/verify';
+          const endpoint = 'https://verifier.login.persona.org/verify';
 
           /**
            *  
@@ -149,7 +149,7 @@
            *                  2)email    mergesortv@gmail.com
            *                  3)audience https://mysite.com
            *                  4)expires  1308859352261
-           *                  5)issuer   "browserid.org"
+           *                  5)issuer   "login.persona.org"
            */  
           public function verify_assertion() {
  
