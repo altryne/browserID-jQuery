@@ -27,7 +27,7 @@ How to Use
 
 ###on DOM ready initiate
 ```
-$('<your button element>').browserid([options]);
+$('<your button element>').browserID([options]);
 ```
 
 ### Arguments:
